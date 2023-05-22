@@ -6,10 +6,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
+
+
 import com.esi.studentservice.dto.RPLRequestDto;
 import com.esi.studentservice.model.RPLRequest;
 import com.esi.studentservice.model.RPLRequestStatus;
 import com.esi.studentservice.repository.RPLRequestRepository;
+import com.esi.adviserservice.dto.RPLRequestDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +24,10 @@ public class RPLRequestService {
 
     @Autowired
     private RPLRequestRepository RPLRequestRepository;
+
+    private final KafkaTemplate<String, RPLRequestDto> kafkaTemplate;
+
+
 
     public   List<RPLRequestDto> getAllRPLRequest(){
         List<RPLRequest> rPLRequests =  new ArrayList<>();
@@ -52,7 +61,11 @@ public class RPLRequestService {
         rplRequest.setRPLRequestStatus(RPLRequestStatus.Submitted);
         rPLRequestDto.setRPLRequestStatus(RPLRequestStatus.Submitted);
 
+        kafkaTemplate.send("RPLRequestTopic", rPLRequestDto);
+
         RPLRequestRepository.save(rplRequest);
     }
+
+
 
 }
