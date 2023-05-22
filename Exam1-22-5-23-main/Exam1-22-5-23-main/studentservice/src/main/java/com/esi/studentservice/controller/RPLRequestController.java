@@ -1,7 +1,10 @@
 package com.esi.studentservice.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,4 +28,11 @@ public class RPLRequestController {
         rPLRequestService.addRPLRequest(rPLRequestDto);
     return ResponseEntity.ok("An RPL Request has been created");
     }
+
+    
+    @GetMapping("/rplrequests")
+    public List<RPLRequestDto> getOrders() {
+    return rPLRequestService.getAllRPLRequest();
+    }
+    
 }
