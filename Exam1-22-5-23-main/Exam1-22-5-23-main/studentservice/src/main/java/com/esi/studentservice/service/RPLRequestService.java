@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.esi.studentservice.dto.RPLRequestDto;
 import com.esi.studentservice.model.RPLRequest;
+import com.esi.studentservice.model.RPLRequestStatus;
 import com.esi.studentservice.repository.RPLRequestRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,13 @@ public class RPLRequestService {
         .courseToSubstituteCode(rPLRequestDto.getCourseToSubstituteCode())
         .courseToBeSubstitutedName(rPLRequestDto.getCourseToBeSubstitutedCode())
         .build();
+
+        
+        // Setting the Order status to CREATED, and the payment status to Pending
+        rplRequest.setRPLRequestStatus(RPLRequestStatus.Submitted);
+        rPLRequestDto.setRPLRequestStatus(RPLRequestStatus.Submitted);
+
+        RPLRequestRepository.save(rplRequest);
     }
 
 }
