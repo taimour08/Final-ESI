@@ -1,5 +1,6 @@
 package com.esi.adviserservice.service;
 import com.esi.adviserservice.dto.RPLRequestDto;
+import com.esi.adviserservice.dto.RPLRequestStatus;
 
 import org.springframework.stereotype.Service;
 
@@ -36,6 +37,10 @@ public void receiveRPLRequest(RPLRequestDto rPLRequestDto){
     .courseToBeSubstitutedCode(rPLRequestDto.getCourseToBeSubstitutedCode())
     .RPLRequestStatus(rPLRequestDto.getCourseToBeSubstitutedCode())
     .build();
+
+    rPLAdvisor.setRPLRequestStatus(RPLRequestStatus.UnderReview);
+    rPLAdvisorDto.setRPLRequestStatus(RPLRequestStatus.UnderReview);
+
     RPLAdvisorRepository.save(rPLAdvisor);
 log.info("RPL receieved", rPLAdvisor.getId());
 }
