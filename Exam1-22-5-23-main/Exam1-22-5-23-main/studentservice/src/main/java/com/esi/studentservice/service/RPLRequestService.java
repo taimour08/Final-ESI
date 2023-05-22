@@ -37,9 +37,14 @@ public class RPLRequestService {
                     .build();
     }
 
-
     public void addRPLRequest(RPLRequestDto rPLRequestDto) {
-
+        RPLRequest rplRequest = RPLRequest.builder()
+        .id(rPLRequestDto.getId())
+        .userId(rPLRequestDto.getUserId())
+        .courseToSubstituteName(rPLRequestDto.getCourseToSubstituteName())
+        .courseToSubstituteCode(rPLRequestDto.getCourseToSubstituteCode())
+        .courseToBeSubstitutedName(rPLRequestDto.getCourseToBeSubstitutedCode())
+        .build();
     }
 
 }
