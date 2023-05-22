@@ -4,6 +4,7 @@ import com.esi.adviserservice.dto.RPLRequestDto;
 import org.springframework.stereotype.Service;
 
 import com.esi.adviserservice.dto.RPLRequestDto;
+import com.esi.adviserservice.repository.RPLAdvisorRepository;
 
 import lombok.RequiredArgsConstructor;
 
