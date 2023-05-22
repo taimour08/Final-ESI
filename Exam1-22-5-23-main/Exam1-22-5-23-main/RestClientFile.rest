@@ -1,0 +1,37 @@
+### Get all requests
+GET http://localhost:8082/api/rplrequests
+
+
+### Add an RPL request  
+POST  http://localhost:8082/api/rplrequests HTTP/1.1
+content-type: application/json
+
+{
+    "id": "01",
+    "userId": "C007",
+    "courseToSubstituteName": "ESI",   
+    "courseToSubstituteCode": "MTAT.03.229",   
+    "courseToSubstituteVolume": 6,   
+    "courseToBeSubstitutedName": "ESI2",     
+    "courseToBeSubstitutedCode": "MTAT.03.229"   
+}
+
+
+### Finalize an RPL request  
+PUT  http://localhost:8083/api/rplresponse HTTP/1.1
+content-type: application/json
+
+{
+    "id": "01",
+    "userId": "C007",
+    "courseToSubstituteName": "ESI",   
+    "courseToSubstituteCode": "MTAT.03.229",   
+    "courseToSubstituteVolume": 6,   
+    "courseToBeSubstitutedName": "ESI2",     
+    "courseToBeSubstitutedCode": "MTAT.03.229",   
+    "advisoryDescription": "The request fulfills all requirements needed, and it is under review by the committee"
+}
+
+
+
+
